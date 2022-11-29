@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация участников</title>
+
+    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
+</head>
+<body>
+<h1 class="text-center">Регистрация участников</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 align-items-center">
+            <div class="w-50 offset-3 mt-3">
+                <form method="post" class="form">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Send message" class="btn">
+            </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
