@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="colorlib.com">
     {% include 'includes/assets/css/css.html' %}
+    {% block css %}
+    
+    {% endblock %}
 </head>
 <body>
 <div class="wrapper">
@@ -17,5 +20,8 @@
 </div>
 
 {% include 'includes/assets/js/js.html' %}
+{% block js %}
+
+{% endblock %}
 </body>
 </html>

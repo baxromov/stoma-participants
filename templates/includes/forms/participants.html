@@ -50,49 +50,12 @@
         <!-- SECTION 3 -->
         <h4></h4>
         <section>
-            <div class="product">
-                <div class="item">
-                    <div class="left">
-                        <a href="#" class="thumb">
-                            <img src="statics/images/item-1.png" alt="">
-                        </a>
-                        <div class="purchase">
-                            <h6>
-                                <a href="#">Low Table/Stool</a>
-                            </h6>
-                            <span>x4</span>
-                        </div>
-                    </div>
-                    <span class="price">$29</span>
-                </div>
-                <div class="item">
-                    <div class="left">
-                        <a href="#" class="thumb">
-                            <img src="statics/images/item-2.png" alt="">
-                        </a>
-                        <div class="purchase">
-                            <h6>
-                                <a href="#">Set of 3 Porcelain</a>
-                            </h6>
-                            <span>x2</span>
-                        </div>
-                    </div>
-                    <span class="price">$124</span>
-                </div>
-            </div>
-            <div class="checkout">
-                <div class="subtotal">
-                    <span class="heading">Subtotal</span>
-                    <span>$364</span>
-                </div>
-                <p class="shipping">
-                    <span class="heading">Shipping</span>
-                    there are no shipping methods available. please double check your address, or contact us if you
-                    need any help.
-                </p>
-                <div class="total">
-                    <span class="heading">Subtotal</span>
-                    <span class="total-price">$364</span>
+            <div class="form-row form-group">
+                <div class="form-holder">
+                    <label for="">
+                        Введите профиль инстаграм *
+                    </label>
+                    <input type="text" name="instagram_username" class="form-control" required>
                 </div>
             </div>
         </section>
@@ -100,32 +63,67 @@
         <!-- SECTION 4 -->
         <h4></h4>
         <section>
-            <div class="checkbox-circle">
-                <label class="active">
-                    <input type="radio" name="billing method" value="Direct bank transfer" checked>Direct bank
-                    transfer>
-                    <span class="checkmark"></span>
-                    <div class="tooltip">
-                        Make your payment directly into our bank account. Please use your Order ID as the payment
-                        reference. Your order will not be shipped until the funds have cleared in our account.
-                    </div>
-                </label>
-                <label>
-                    <input type="radio" name="billing method" value="Check payments">Check payments
-                    <span class="checkmark"></span>
-                    <div class="tooltip">
-                        Please send a check to Store Name, Store Street, Store Town, Store State / County, Store
-                        Postcode.
-                    </div>
-                </label>
-                <label>
-                    <input type="radio" name="billing method" value="Cash on delivery">Cash on delivery
-                    <span class="checkmark"></span>
-                    <div class="tooltip">
-                        Pay with cash upon delivery.
-                    </div>
-                </label>
-            </div>
+            <form id="click_form" action="https://my.click.uz/services/pay" method="get" target="_blank">
+                <input type="hidden" name="amount" value="1000"/>
+                <input type="hidden" name="merchant_id" value="46"/>
+                <input type="hidden" name="merchant_user_id" value="4"/>
+                <input type="hidden" name="service_id" value="36"/>
+                <input type="hidden" name="transaction_param" value="user23151"/>
+                <input type="hidden" name="return_url" value="merchant website url"/>
+                <input type="hidden" name="card_type" value="uzcard/humo"/>
+                <button type="submit" class="click_logo"><i></i>Pay with CLICK</button>
+            </form>
+            <body onload="Paycom.Button('#form-payme', '#button-container')">
+            <form id="form-payme" method="POST" action="https://checkout.paycom.uz/">
+                <input type="hidden" name="merchant" value="587f72c72cac0d162c722ae2">
+                <input type="hidden" name="account[order_id]" value="197">
+                <input type="hidden" name="amount" value="500">
+                <input type="hidden" name="lang" value="ru">
+                <input type="hidden" name="button" data-type="svg" value="colored">
+                <div id="button-container"></div>
+            </form>
         </section>
     </div>
 </form>
+
+{% block css %}
+    <style>
+        .click_logo {
+            padding: 4px 10px;
+            cursor: pointer;
+            color: #fff;
+            line-height: 190%;
+            font-size: 13px;
+            font-family: Arial;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #037bc8;
+            text-shadow: 0px -1px 0px #037bc8;
+            border-radius: 4px;
+            background: #27a8e0;
+            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI3YThlMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxYzhlZDciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#27a8e0), to(#1c8ed7));
+            background: -webkit-linear-gradient(#27a8e0 0%, #1c8ed7 100%);
+            background: -moz-linear-gradient(#27a8e0 0%, #1c8ed7 100%);
+            background: -o-linear-gradient(#27a8e0 0%, #1c8ed7 100%);
+            background: linear-gradient(#27a8e0 0%, #1c8ed7 100%);
+            box-shadow: inset 0px 1px 0px #45c4fc;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27a8e0', endColorstr='#1c8ed7', GradientType=0);
+            -webkit-box-shadow: inset 0px 1px 0px #45c4fc;
+            -moz-box-shadow: inset 0px 1px 0px #45c4fc;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+        }
+
+        .click_logo i {
+            background: url(https://m.click.uz/static/img/logo.png) no-repeat top left;
+            width: 30px;
+            height: 25px;
+            display: block;
+            float: left;
+        }
+    </style>
+{% endblock %}
+{% block js %}
+    <script src="https://cdn.paycom.uz/integration/js/checkout.min.js"></script>
+{% endblock %}
