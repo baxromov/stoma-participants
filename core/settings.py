@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
     },
 ]
@@ -146,3 +147,5 @@ PAYMENT_VARIANTS = {
         'secret_key': 'AAAAAA'
     })
 }
+
+COUNTRIES_COMMON_NAMES = False
