@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>FormWizard_v5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="colorlib.com">
+    {% include 'includes/assets/css/css.html' %}
+</head>
+<body>
+<div class="wrapper">
+    <div class="image-holder">
+        <img src="{% static 'images/form-wizard.png' %}" alt="">
+    </div>
+    {% include 'includes/forms/participants.html' %}
+</div>
+
+{% include 'includes/assets/js/js.html' %}
+</body>
+</html>

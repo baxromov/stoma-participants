@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-k!9z4+j$j6(-l9*obhj)720%h7bafek$xjptb9y$f&(g83ruvk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -35,7 +35,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'participant'
+    # Installed
+    'payments',
+    # 'click',
+    # Project apps
+    'participant',
+    'transactions',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +65,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.static',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -111,12 +117,32 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = 'statics/'
+MEDIA_URL = 'media/'
 STATICFILES_DIRS = (
-    ('static', BASE_DIR / 'templates/static'),
+    'templates/statics',
 )
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+COUNTRIES_FIRST_SORT = True
+COUNTRIES_FLAG_URL = 'flags/{code}.gif'
+
+PAYMENT_HOST = '<your_ip_address>:<your_port>'
+PAYMENT_USES_SSL = False  # set the True value if you are using the SSL
+PAYMENT_MODEL = '<your_payment_model>'
+# payment model format like this :: '<app_name>.<model_name>'
+# add "click" to your variants
+PAYMENT_VARIANTS = {
+    'click': ('click.ClickProvider', {
+        'merchant_id': 1111,
+        'merchant_service_id': 11111,
+        'merchant_user_id': 11111,
+        'secret_key': 'AAAAAA'
+    })
+}

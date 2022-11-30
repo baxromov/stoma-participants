@@ -7,5 +7,5 @@ from participant.models import Participant
 class ParticipantTemplateView(CreateView):
     model = Participant
     form_class = ParticipantModelForm
-    template_name = 'index.html'
+    template_name = 'main.html'
     success_url = '/'

@@ -413,7 +413,7 @@ module.exports = function(XRegExp) {
      * - Adds the `XRegExp.addUnicodeData` method used by other addons to provide character data.
      *
      * Unicode Base relies on externally provided Unicode character data. Official addons are
-     * available to provide data for Unicode categories, scripts, blocks, and properties.
+     * available to provide data for Unicode categories, scripts, includes, and properties.
      *
      * @requires XRegExp
      */
@@ -668,7 +668,7 @@ module.exports = function(XRegExp) {
     'use strict';
 
     /**
-     * Adds support for all Unicode blocks. Block names use the prefix 'In'. E.g.,
+     * Adds support for all Unicode includes. Block names use the prefix 'In'. E.g.,
      * `\p{InBasicLatin}`. Token names are case insensitive, and any spaces, hyphens, and
      * underscores are ignored.
      *
@@ -2718,7 +2718,7 @@ var XRegExp = require('./xregexp');
 require('./addons/build')(XRegExp);
 require('./addons/matchrecursive')(XRegExp);
 require('./addons/unicode-base')(XRegExp);
-require('./addons/unicode-blocks')(XRegExp);
+require('./addons/unicode-includes')(XRegExp);
 require('./addons/unicode-categories')(XRegExp);
 require('./addons/unicode-properties')(XRegExp);
 require('./addons/unicode-scripts')(XRegExp);
@@ -3391,7 +3391,7 @@ XRegExp.prototype = new RegExp();
  * The XRegExp version number as a string containing three dot-separated parts. For example,
  * '2.0.0-beta-3'.
  *
- * @static
+ * @statics
  * @memberOf XRegExp
  * @type String
  */
