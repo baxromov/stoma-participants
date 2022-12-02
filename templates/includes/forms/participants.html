@@ -1,129 +1,22 @@
-<form action="{% url 'participant' %}">
-    <div id="wizard">
-        <!-- SECTION 1 -->
-        <h4></h4>
-        <section>
-            <div class="form-row form-group">
-                <div class="form-holder">
-                    <label for="">
-                        Имя *
-                    </label>
-                    <input type="text" name="first_name" class="form-control" required>
-                </div>
-                <div class="form-holder">
-                    <label for="">
-                        Фамилия *
-                    </label>
-                    <input type="text" name="last_name" class="form-control" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <label for="">
-                    Страна *
-                </label>
-                <div class="form-holder">
-                    <select name="country" id="" class="form-control" required>
-                        {% for country_code, country in countries.items %}
-                            <option value="{{ country_code }}" class="option">{{ country }}</option>
-                        {% endfor %}
-                    </select>
-                    <i class="zmdi zmdi-caret-down"></i>
-                </div>
-            </div>
-            <div class="form-row">
-                <label for="">
-                    Город *
-                </label>
-                <input type="text" name="address" class="form-control" required>
-            </div>
-            <div class="form-row">
-                <label for="">
-                    Телефон *
-                </label>
-                <input type="tel" name="phone" class="form-control" required>
-            </div>
-        </section>
-
-        <!-- SECTION 2 -->
-
-
-        <!-- SECTION 3 -->
-        <h4></h4>
-        <section>
-            <div class="form-row form-group">
-                <div class="form-holder">
-                    <label for="">
-                        Введите профиль инстаграм *
-                    </label>
-                    <input type="text" name="instagram_username" class="form-control" required>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4 -->
-        <h4></h4>
-        <section>
-            <form id="click_form" action="https://my.click.uz/services/pay" method="get" target="_blank">
-                <input type="hidden" name="amount" value="1000"/>
-                <input type="hidden" name="merchant_id" value="46"/>
-                <input type="hidden" name="merchant_user_id" value="4"/>
-                <input type="hidden" name="service_id" value="36"/>
-                <input type="hidden" name="transaction_param" value="user23151"/>
-                <input type="hidden" name="return_url" value="merchant website url"/>
-                <input type="hidden" name="card_type" value="uzcard/humo"/>
-                <button type="submit" class="click_logo"><i></i>Pay with CLICK</button>
+<div id="container">
+    <div class="row">
+        <div class="form-wrapper">
+            <form action="" method="post" class="form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-warning">Save</button>
             </form>
-            <body onload="Paycom.Button('#form-payme', '#button-container')">
-            <form id="form-payme" method="POST" action="https://checkout.paycom.uz/">
-                <input type="hidden" name="merchant" value="587f72c72cac0d162c722ae2">
-                <input type="hidden" name="account[order_id]" value="197">
-                <input type="hidden" name="amount" value="500">
-                <input type="hidden" name="lang" value="ru">
-                <input type="hidden" name="button" data-type="svg" value="colored">
-                <div id="button-container"></div>
-            </form>
-        </section>
+        </div>
     </div>
-</form>
-
+</div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% block css %}
-    <style>
-        .click_logo {
-            padding: 4px 10px;
-            cursor: pointer;
-            color: #fff;
-            line-height: 190%;
-            font-size: 13px;
-            font-family: Arial;
-            font-weight: bold;
-            text-align: center;
-            border: 1px solid #037bc8;
-            text-shadow: 0px -1px 0px #037bc8;
-            border-radius: 4px;
-            background: #27a8e0;
-            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI3YThlMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxYzhlZDciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-            background: -webkit-gradient(linear, 0 0, 0 100%, from(#27a8e0), to(#1c8ed7));
-            background: -webkit-linear-gradient(#27a8e0 0%, #1c8ed7 100%);
-            background: -moz-linear-gradient(#27a8e0 0%, #1c8ed7 100%);
-            background: -o-linear-gradient(#27a8e0 0%, #1c8ed7 100%);
-            background: linear-gradient(#27a8e0 0%, #1c8ed7 100%);
-            box-shadow: inset 0px 1px 0px #45c4fc;
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27a8e0', endColorstr='#1c8ed7', GradientType=0);
-            -webkit-box-shadow: inset 0px 1px 0px #45c4fc;
-            -moz-box-shadow: inset 0px 1px 0px #45c4fc;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-        }
-
-        .click_logo i {
-            background: url(https://m.click.uz/static/img/logo.png) no-repeat top left;
-            width: 30px;
-            height: 25px;
-            display: block;
-            float: left;
-        }
-    </style>
 {% endblock %}
 {% block js %}
-    <script src="https://cdn.paycom.uz/integration/js/checkout.min.js"></script>
 {% endblock %}

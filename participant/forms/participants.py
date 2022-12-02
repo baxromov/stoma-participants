@@ -16,13 +16,13 @@ class ParticipantModelForm(ModelForm):
             'country'
         ]
         exclude = ['created_at', 'updated_at']
-        # widgets = {
-        #     'first_name': TextInput(attrs={'class': 'form-control'}),
-        #     'last_name': TextInput(attrs={'class': 'form-control'}),
-        #     'phone': TextInput(attrs={'class': 'form-control'}),
-        #     'address': TextInput(attrs={'class': 'form-control'}),
-        #     'instagram_username': TextInput(attrs={'class': 'form-control'}),
-        #     'country': CountrySelectWidget(attrs={
-        #         'class': 'form-select',
-        #     }),
-        # }
+        widgets = {
+            'first_name': TextInput(attrs={'class': 'form-control'}),
+            'last_name': TextInput(attrs={'class': 'form-control'}),
+            'phone': TextInput(attrs={'class': 'form-control'}),
+            'address': TextInput(attrs={'class': 'form-control'}),
+            'instagram_username': TextInput(attrs={'class': 'form-control', 'label': 'Вы должны подписаться на страницу Instagram, тогда вы можете продолжить!'}),
+            'country': CountrySelectWidget(attrs={
+                'class': 'form-select',
+            }),
+        }

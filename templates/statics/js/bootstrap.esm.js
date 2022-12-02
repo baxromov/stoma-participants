@@ -772,7 +772,7 @@ class BaseComponent {
   }
 
   static get NAME() {
-    throw new Error('You have to implement the statics method "NAME", for each component!');
+    throw new Error('You have to implement the static method "NAME", for each component!');
   }
 
   static get DATA_KEY() {
@@ -2086,7 +2086,7 @@ class Dropdown extends BaseComponent {
       this._popper = Popper.createPopper(referenceElement, this._menu, popperConfig);
 
       if (isDisplayStatic) {
-        Manipulator.setDataAttribute(this._menu, 'popper', 'statics');
+        Manipulator.setDataAttribute(this._menu, 'popper', 'static');
       }
     } // If this is a touch-enabled device we add extra
     // empty mouseover listeners to the body's immediate children;
@@ -2246,9 +2246,9 @@ class Dropdown extends BaseComponent {
           offset: this._getOffset()
         }
       }]
-    }; // Disable Popper if we have a statics display
+    }; // Disable Popper if we have a static display
 
-    if (this._config.display === 'statics') {
+    if (this._config.display === 'static') {
       defaultBsPopperConfig.modifiers = [{
         name: 'applyStyles',
         enabled: false
@@ -2684,7 +2684,7 @@ const EVENT_CLICK_DATA_API$2 = `click${EVENT_KEY$6}${DATA_API_KEY$3}`;
 const CLASS_NAME_OPEN = 'modal-open';
 const CLASS_NAME_FADE$4 = 'fade';
 const CLASS_NAME_SHOW$5 = 'show';
-const CLASS_NAME_STATIC = 'modal-statics';
+const CLASS_NAME_STATIC = 'modal-static';
 const SELECTOR_DIALOG = '.modal-dialog';
 const SELECTOR_MODAL_BODY = '.modal-body';
 const SELECTOR_DATA_TOGGLE$2 = '[data-bs-toggle="modal"]';
@@ -2822,7 +2822,7 @@ class Modal extends BaseComponent {
   _initializeBackDrop() {
     return new Backdrop({
       isVisible: Boolean(this._config.backdrop),
-      // 'statics' option will be translated to true, and booleans will keep their value
+      // 'static' option will be translated to true, and booleans will keep their value
       isAnimated: this._isAnimated()
     });
   }
@@ -2952,7 +2952,7 @@ class Modal extends BaseComponent {
 
       if (this._config.backdrop === true) {
         this.hide();
-      } else if (this._config.backdrop === 'statics') {
+      } else if (this._config.backdrop === 'static') {
         this._triggerBackdropTransition();
       }
     });
