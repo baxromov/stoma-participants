@@ -1,21 +1,12 @@
 <div id="container">
-    <div class="row">
         <div class="form-wrapper">
             <form action="" method="post" class="form">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-warning">Save</button>
+                <button type="submit" class="btn btn-warning">Сохранять</button>
             </form>
         </div>
-    </div>
 </div>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-    {% endfor %}
-</ul>
-{% endif %}
 {% block css %}
 {% endblock %}
 {% block js %}

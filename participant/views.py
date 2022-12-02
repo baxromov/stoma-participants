@@ -11,11 +11,6 @@ class ParticipantTemplateView(CreateView, ListView):
     template_name = 'main.html'
     success_url = 'success'
 
-    def get_context_data(self, **kwargs):
-        ctx = super(ParticipantTemplateView, self).get_context_data(**kwargs)
-        ctx['countries'] = dict(countries)
-        return ctx
-
 
 class SuccessTemplateView(TemplateView):
     template_name = 'success.html'
