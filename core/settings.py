@@ -13,6 +13,8 @@ import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from utils.instagramapi import InstagramLogin
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -149,3 +151,10 @@ PAYMENT_VARIANTS = {
 }
 
 COUNTRIES_COMMON_NAMES = False
+# TODO: RETRIEVE FROM ENVIRONMENT
+INSTAGRAM_USERNAME = "dodge_iimd"
+INSTAGRAM_PASSWORD = "Jamoliddin0909"
+INSTAGRAM_DIR = BASE_DIR / 'utils/instagramapi/'
+INSTAGRAM_DUMP_PATH = INSTAGRAM_DIR / 'auth_dump/file.json'
+# INSTAGRAM_LOG_PATH = INSTAGRAM_DIR / 'logs'
+INSTAGRAM_USER = InstagramLogin(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD, INSTAGRAM_DUMP_PATH)
