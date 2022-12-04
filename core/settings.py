@@ -120,12 +120,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'statics/'
+STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 STATICFILES_DIRS = (
     'templates/statics',
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
@@ -152,9 +152,9 @@ PAYMENT_VARIANTS = {
 
 COUNTRIES_COMMON_NAMES = False
 # TODO: RETRIEVE FROM ENVIRONMENT
-INSTAGRAM_USERNAME = "dodge_iimd"
-INSTAGRAM_PASSWORD = "Jamoliddin0909"
+INSTAGRAM_USERNAME = "dodge_tmn"
+INSTAGRAM_PASSWORD = "Salom@123"
 INSTAGRAM_DIR = BASE_DIR / 'utils/instagramapi/'
 INSTAGRAM_DUMP_PATH = INSTAGRAM_DIR / 'auth_dump/file.json'
-# INSTAGRAM_LOG_PATH = INSTAGRAM_DIR / 'logs'
+INSTAGRAM_LOG_PATH = INSTAGRAM_DIR / 'logs'
 INSTAGRAM_USER = InstagramLogin(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD, INSTAGRAM_DUMP_PATH)

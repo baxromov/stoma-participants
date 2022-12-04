@@ -16,30 +16,31 @@ class ParticipantModelForm(ModelForm):
             'first_name',
             'last_name',
             'phone',
-            'address',
             'instagram_username',
-            'country'
+            'country',
+            'address',
         ]
         exclude = ['created_at', 'updated_at']
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control'}),
             'last_name': TextInput(attrs={'class': 'form-control'}),
             'phone': TextInput(attrs={'class': 'form-control'}),
-            'address': TextInput(attrs={'class': 'form-control'}),
-            'instagram_username': TextInput(attrs={'class': 'form-control', 'label': 'Вы должны подписаться на страницу Instagram, тогда вы сможете продолжить!'}),
+            'instagram_username': TextInput(attrs={'class': 'form-control',
+                                                   'label': 'Вы должны подписаться на страницу Instagram, тогда вы сможете продолжить!'}),
             'country': CountrySelectWidget(attrs={
                 'class': 'form-select',
-            }),
+            },layout='{widget}<img class="country-select-flag" id="{flag_id}" style="margin: 6px 4px 0" src="{country.flag}">'),
+            'address': TextInput(attrs={'class': 'form-control'}),
         }
 
-    def clean(self):
+    def clean_instagram_username(self):
         if "instagram_username" not in self.cleaned_data:
             raise forms.ValidationError('No user!')
         try:
             parser = ParseOneUserInstagram(self.cleaned_data["instagram_username"], INSTAGRAM_USER)
         except UserNotFound:
-            raise forms.ValidationError('User doesn\'t exist')
+            raise forms.ValidationError(message='User doesn\'t exist')
 
         if not parser.is_following():
-            raise forms.ValidationError('User not following!')
-        return self.cleaned_data
+            raise forms.ValidationError(message='User not following!')
+        return self.cleaned_data["instagram_username"]
