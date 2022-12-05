@@ -36,11 +36,12 @@ class ParticipantModelForm(ModelForm):
     def clean_instagram_username(self):
         if "instagram_username" not in self.cleaned_data:
             raise forms.ValidationError('No user!')
+        instagram_username = self.cleaned_data["instagram_username"].replace("@", "")
         try:
-            parser = ParseOneUserInstagram(self.cleaned_data["instagram_username"], INSTAGRAM_USER)
+            parser = ParseOneUserInstagram(instagram_username, INSTAGRAM_USER)
         except UserNotFound:
             raise forms.ValidationError(message='User doesn\'t exist')
 
         if not parser.is_following():
-            raise forms.ValidationError(message='User not following!')
+            raise forms.ValidationError(message='User is not following!')
         return self.cleaned_data["instagram_username"]
