@@ -1,7 +1,7 @@
 from django.urls import path
-from participant.views import ParticipantTemplateView, SuccessTemplateView
+# from participant.views import ParticipantTemplateView, SuccessTemplateView
+from participant.views import ParticipantCreateAPIView
 
 urlpatterns = [
-    path('', ParticipantTemplateView.as_view(), name='participant'),
-    path('success', SuccessTemplateView.as_view(), name='success')
+    path('', ParticipantCreateAPIView.as_view(), name='participant'),
 ]

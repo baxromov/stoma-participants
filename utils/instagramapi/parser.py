@@ -103,7 +103,6 @@ class InstagramBaseParser:
                 - "usertags" for medias
                 - "mentions" for histories
         """
-        print(posts)
         for post in posts:
             for mention in getattr(post, attribute):
                 try:

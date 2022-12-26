@@ -38,11 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Installed
-    'payments',
-    # 'click',
+    'rest_framework',
     # Project apps
+    'pyclick',
     'participant',
-    'transactions',
 ]
 
 MIDDLEWARE = [
@@ -83,8 +82,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'click',
+        'USER': 'postgres',
+        'PASSWORD': '1',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -136,20 +139,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 COUNTRIES_FIRST_SORT = True
 COUNTRIES_FLAG_URL = 'flags/{code}.gif'
 
-PAYMENT_HOST = '<your_ip_address>:<your_port>'
-PAYMENT_USES_SSL = False  # set the True value if you are using the SSL
-PAYMENT_MODEL = '<your_payment_model>'
-# payment model format like this :: '<app_name>.<model_name>'
-# add "click" to your variants
-PAYMENT_VARIANTS = {
-    'click': ('click.ClickProvider', {
-        'merchant_id': 1111,
-        'merchant_service_id': 11111,
-        'merchant_user_id': 11111,
-        'secret_key': 'AAAAAA'
-    })
-}
 
+CLICK_SETTINGS = {
+    'service_id': "25810",
+    'merchant_id': "18134",
+    'secret_key': "cK2fYQ9WtyiWjF",
+    'merchant_user_id': "29271",
+}
+RETURN_URL = 'http://127.0.0.1:8000/'
+DEFAULT_AMOUNT = 1000
 COUNTRIES_COMMON_NAMES = False
 # TODO: RETRIEVE FROM ENVIRONMENT
 INSTAGRAM_USERNAME = ""
