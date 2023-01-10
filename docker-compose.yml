@@ -1,14 +1,16 @@
 services:
-#  db:
-#    image: postgres
-#    volumes:
-#      - ./data/db:/var/lib/postgresql/data
-#    environment:
-#      - POSTGRES_DB=postgres
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
+  db:
+    image: postgres
+    container_name: db
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=micronlab
+      - POSTGRES_USER=micronlab
+      - POSTGRES_PASSWORD=micronlab
   web:
     build: .
+    container_name: web
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
@@ -18,5 +20,5 @@ services:
 #      - POSTGRES_NAME=postgres
 #      - POSTGRES_USER=postgres
 #      - POSTGRES_PASSWORD=postgres
-#    depends_on:
-#      - db
+    depends_on:
+      - db

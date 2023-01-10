@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'click',
-        'USER': 'postgres',
-        'PASSWORD': '1',
-        'HOST': 'localhost',
+        'NAME': 'micronlab',
+        'USER': 'micronlab',
+        'PASSWORD': 'micronlab',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
