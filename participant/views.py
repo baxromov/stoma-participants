@@ -28,13 +28,13 @@ class ParticipantCreateAPIView(APIView):
             url = PyClickMerchantAPIView.generate_url(order_id=transaction.id, amount=transaction.amount,
                                                       return_url=RETURN_URL)
             return Response({"redirect_url": url}, status=status.HTTP_200_OK)
-        return Response({"exists": "Already paid user"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "Пользователь уже прошёл регистрацию"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 def check_instagram(instagram_username) -> Optional[Response]:
     try:
         parser = ParseOneUserInstagram(instagram_username, INSTAGRAM_USER)
     except UserNotFound:
-        return Response({"error": "Пользователь не существует"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error": "Пользователь не существует"}, status=status.HTTP_400_BAD_REQUEST)
     if not parser.is_following():
-        return Response({"error": "Пользователь не подписан"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error": "Пользователь не подписан"}, status=status.HTTP_400_BAD_REQUEST)
