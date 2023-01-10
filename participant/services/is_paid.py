@@ -1,6 +1,4 @@
 from django.db.models import Q
-from rest_framework import request
-
 from participant.models import Participant
 
 

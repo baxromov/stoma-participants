@@ -2,7 +2,7 @@ from typing import Optional
 
 from rest_framework import status
 
-from participant.services.is_paid import is_paid_created_participant
+from participant.services import is_paid_created_participant, cancel_previous_transactions
 from pyclick.views import PyClickMerchantAPIView
 
 from core.settings import DEFAULT_AMOUNT, RETURN_URL
@@ -23,6 +23,7 @@ class ParticipantCreateAPIView(APIView):
             return error
 
         if not is_paid_created_participant(request.data):
+            cancel_previous_transactions(request.data)
             transaction = ClickTransaction.objects.create(participant_data=request.data, amount=DEFAULT_AMOUNT)
             url = PyClickMerchantAPIView.generate_url(order_id=transaction.id, amount=transaction.amount,
                                                       return_url=RETURN_URL)
