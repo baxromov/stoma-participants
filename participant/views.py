@@ -35,6 +35,6 @@ def check_instagram(instagram_username) -> Optional[Response]:
     try:
         parser = ParseOneUserInstagram(instagram_username, INSTAGRAM_USER)
     except UserNotFound:
-        return Response({"error": "User doesn't exist"}, status=status.HTTP_200_OK)
+        return Response({"error": "Пользователь не существует"}, status=status.HTTP_404_NOT_FOUND)
     if not parser.is_following():
-        return Response({"error": "User is not following"}, status=status.HTTP_200_OK)
+        return Response({"error": "Пользователь не подписан"}, status=status.HTTP_404_NOT_FOUND)
