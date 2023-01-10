@@ -41,12 +41,14 @@ INSTALLED_APPS = [
     'rest_framework',
     # Project apps
     'pyclick',
+    'corsheaders',
     'participant',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -156,3 +158,19 @@ INSTAGRAM_DIR = BASE_DIR / 'utils/instagramapi/'
 INSTAGRAM_DUMP_PATH = INSTAGRAM_DIR / 'auth_dump/file.json'
 INSTAGRAM_LOG_PATH = INSTAGRAM_DIR / 'logs'
 INSTAGRAM_USER = InstagramLogin(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD, INSTAGRAM_DUMP_PATH)
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://46.101.206.119:3000",
+]
