@@ -4,7 +4,6 @@ from enum import Enum
 from pathlib import Path
 from typing import Iterable, Set
 
-import logging
 
 # Create and configure logger
 # from core.settings import INSTAGRAM_LOG_PATH
@@ -81,7 +80,7 @@ class InstagramBaseParser:
         bool
             Is user following MAIN USER
         """
-        if follower_user_id in self.client.user_followers(self.user_id):
+        if follower_user_id in self.client.user_followers(self.user_id, amount=20):
             return True
         return False
 
