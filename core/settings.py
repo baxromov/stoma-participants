@@ -148,7 +148,7 @@ CLICK_SETTINGS = {
     'secret_key': "cK2fYQ9WtyiWjF",
     'merchant_user_id': "29271",
 }
-RETURN_URL = 'http://127.0.0.1:8000/'
+RETURN_URL = 'http://46.101.206.119:3000'
 DEFAULT_AMOUNT = 1000
 COUNTRIES_COMMON_NAMES = False
 # TODO: RETRIEVE FROM ENVIRONMENT
