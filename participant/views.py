@@ -14,15 +14,23 @@ from instagrapi.exceptions import UserNotFound
 
 from core.settings import INSTAGRAM_USER
 from utils.instagramapi import ParseOneUserInstagram
+import logging
+
+logging.basicConfig(
+    filename="test.log",
+    level=logging.INFO,
+    format="%(asctime)s:%(levelname)s:%(message)s"
+)
 
 
 class ParticipantCreateAPIView(APIView):
     def post(self, request):
+        logging.info("hello world")
         request.data["instagram_username"] = request.data["instagram_username"].lstrip("@")
-        if error := check_instagram(request.data["instagram_username"]):
-            return error
 
         if not is_paid_created_participant(request.data):
+            if error := check_instagram(request.data["instagram_username"]):
+                return error
             cancel_previous_transactions(request.data)
             transaction = ClickTransaction.objects.create(participant_data=request.data, amount=DEFAULT_AMOUNT)
             url = PyClickMerchantAPIView.generate_url(order_id=transaction.id, amount=transaction.amount,
