@@ -10,6 +10,7 @@ from pyclick.serializers import ClickTransactionSerializer
 from pyclick.status import (PREPARE, COMPLETE, AUTHORIZATION_FAIL_CODE, AUTHORIZATION_FAIL, ACTION_NOT_FOUND,
                             ORDER_NOT_FOUND, INVALID_AMOUNT, ALREADY_PAID, TRANSACTION_NOT_FOUND, TRANSACTION_CANCELLED,
                             SUCCESS)
+import logging
 
 
 class PyClickMerchantAPIView(APIView):
@@ -18,6 +19,7 @@ class PyClickMerchantAPIView(APIView):
     VALIDATE_CLASS = None
 
     def post(self, request):
+        logging.info("got post request")
         serializer = ClickTransactionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
