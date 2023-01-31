@@ -48,10 +48,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Installed
     'rest_framework',
+    'drf_yasg',
     # Project apps
     'pyclick',
     'corsheaders',
     'participant',
+    'attachments'
 ]
 
 MIDDLEWARE = [
@@ -101,7 +103,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-#
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -165,7 +167,7 @@ CLICK_SETTINGS = {
     'secret_key': "cK2fYQ9WtyiWjF",
     'merchant_user_id': "29271",
 }
-RETURN_URL = 'http://46.101.206.119:3000'
+RETURN_URL = 'http://46.101.206.119:3000/'
 DEFAULT_AMOUNT = 1000
 COUNTRIES_COMMON_NAMES = False
 # TODO: RETRIEVE FROM ENVIRONMENT
@@ -190,4 +192,5 @@ CORS_ALLOW_METHODS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://46.101.206.119:3000",
+    "http://127.0.0.1:3000"
 ]
