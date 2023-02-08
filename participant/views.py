@@ -32,6 +32,7 @@ class ParticipantCreateAPIView(APIView):
             return Response({"error": "Пользователь уже прошёл регистрацию"}, status=status.HTTP_400_BAD_REQUEST)
         if error := check_instagram(request.data["instagram_username"]):
             return error
+
         photos_info = request.data.pop("dragger")
         request.data["photos"] = [str(photo["response"]["id"]) for photo in photos_info]
         cancel_previous_transactions(request.data)
