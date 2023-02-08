@@ -28,15 +28,18 @@ class ParticipantCreateAPIView(APIView):
         logging.info("hello world")
         request.data["instagram_username"] = request.data["instagram_username"].lstrip("@")
 
-        if not is_paid_created_participant(request.data):
-            if error := check_instagram(request.data["instagram_username"]):
-                return error
-            cancel_previous_transactions(request.data)
-            transaction = ClickTransaction.objects.create(participant_data=request.data, amount=DEFAULT_AMOUNT)
-            url = PyClickMerchantAPIView.generate_url(order_id=transaction.id, amount=transaction.amount,
-                                                      return_url=RETURN_URL)
-            return Response({"redirect_url": url}, status=status.HTTP_200_OK)
-        return Response({"error": "Пользователь уже прошёл регистрацию"}, status=status.HTTP_400_BAD_REQUEST)
+        if is_paid_created_participant(request.data):
+            return Response({"error": "Пользователь уже прошёл регистрацию"}, status=status.HTTP_400_BAD_REQUEST)
+        if error := check_instagram(request.data["instagram_username"]):
+            return error
+
+        photos_info = request.data.pop("dragger")
+        request.data["photos"] = [str(photo["response"]["id"]) for photo in photos_info]
+        cancel_previous_transactions(request.data)
+        transaction = ClickTransaction.objects.create(participant_data=request.data, amount=DEFAULT_AMOUNT)
+        url = PyClickMerchantAPIView.generate_url(order_id=transaction.id, amount=transaction.amount,
+                                                  return_url=RETURN_URL)
+        return Response({"redirect_url": url}, status=status.HTTP_200_OK)
 
 
 def check_instagram(instagram_username) -> Optional[Response]:
