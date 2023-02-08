@@ -12,6 +12,7 @@ class Participant(BaseModel):
     address = models.CharField(max_length=255, verbose_name='Адрес')
     instagram_username = models.CharField(max_length=100, null=True, unique=True,
                                           verbose_name='Имя пользователя в инстаграме')
+    photos = models.ManyToManyField("attachments.Attachments")
 
     class Meta:
         verbose_name_plural = 'Участник'
