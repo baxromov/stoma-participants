@@ -16,13 +16,11 @@ from pathlib import Path
 from utils.instagramapi import InstagramLogin
 import logging
 
-
 logging.basicConfig(
     filename="test.log",
     level=logging.INFO,
     format="%(asctime)s:%(levelname)s:%(message)s"
 )
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -111,7 +109,6 @@ DATABASES = {
 #     }
 # }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -160,7 +157,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 COUNTRIES_FIRST_SORT = True
 COUNTRIES_FLAG_URL = 'flags/{code}.gif'
 
-
 CLICK_SETTINGS = {
     'service_id': "25810",
     'merchant_id': "18134",
@@ -179,8 +175,11 @@ INSTAGRAM_LOG_PATH = INSTAGRAM_DIR / 'logs'
 INSTAGRAM_USER = InstagramLogin(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD, INSTAGRAM_DUMP_PATH)
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
