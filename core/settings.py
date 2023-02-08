@@ -189,7 +189,9 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://46.101.206.119/'
+]
 CORS_ALLOWED_ORIGINS = [
     "http://46.101.206.119:3000",
     "http://127.0.0.1:3000"
