@@ -6,4 +6,7 @@ from attachments.models import Attachments
 
 @admin.register(Attachments)
 class AttachmentsModelAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        'id',
+        'file'
+    ]

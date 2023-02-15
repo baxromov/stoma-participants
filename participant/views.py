@@ -1,7 +1,10 @@
 from typing import Optional
 
 from rest_framework import status
+from rest_framework.viewsets import ModelViewSet
 
+from participant.models import Participant
+from participant.serializers import ParticipantSerializer
 from participant.services import is_paid_created_participant, cancel_previous_transactions
 from pyclick.views import PyClickMerchantAPIView
 
@@ -26,7 +29,7 @@ logging.basicConfig(
 class ParticipantCreateAPIView(APIView):
     def post(self, request):
         logging.info("hello world")
-        request.data["instagram_username"] = request.data["instagram_username"].lstrip("@")
+        request.data["instagram_username"] = request.data["instagram_username"].lstrip("@").strip()
 
         if is_paid_created_participant(request.data):
             return Response({"error": "Пользователь уже прошёл регистрацию"}, status=status.HTTP_400_BAD_REQUEST)
@@ -49,3 +52,8 @@ def check_instagram(instagram_username) -> Optional[Response]:
         return Response({"error": "Пользователь не существует"}, status=status.HTTP_400_BAD_REQUEST)
     if not parser.is_following():
         return Response({"error": "Пользователь не подписан"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ParticipantsModelViewSet(ModelViewSet):
+    queryset = Participant.objects.all()
+    serializer_class = ParticipantSerializer
