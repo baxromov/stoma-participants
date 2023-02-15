@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.html import format_html
+
 from participant.models import Participant
 
 
@@ -25,3 +27,7 @@ class CountryModelAdmin(admin.ModelAdmin):
         'country',
         'instagram_username'
     ]
+    readonly_fields = ['show_firm_url']
+
+    def show_firm_url(self, obj):
+        return format_html(f"{obj.file[0]}<a href='1'></a>")
