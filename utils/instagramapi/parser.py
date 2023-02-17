@@ -80,7 +80,7 @@ class InstagramBaseParser:
         bool
             Is user following MAIN USER
         """
-        if follower_user_id in self.client.user_followers(self.user_id, amount=20):
+        if follower_user_id in self.client.user_followers(self.user_id, use_cache=False, amount=20):
             return True
         return False
 
