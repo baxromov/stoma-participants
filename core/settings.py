@@ -158,10 +158,10 @@ COUNTRIES_FIRST_SORT = True
 COUNTRIES_FLAG_URL = 'flags/{code}.gif'
 
 CLICK_SETTINGS = {
-    'service_id': "25810",
-    'merchant_id': "18134",
-    'secret_key': "cK2fYQ9WtyiWjF",
-    'merchant_user_id': "29271",
+    'service_id': "service_id",
+    'merchant_id': "merchant_id",
+    'secret_key': "secret_key",
+    'merchant_user_id': "merchant_user_id",
 }
 RETURN_URL = 'http://46.101.206.119:3000/'
 DEFAULT_AMOUNT = 1000
